@@ -1,63 +1,585 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manase Skari yao</title>
+    <title>Core-First - Innovation in Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            background: white;
+            margin-top: 2rem;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card p {
+            opacity: 0.95;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .project-link {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            border: 3px solid white;
+        }
+
+        .team-body {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-body h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-body p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .team-links a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .team-links a:hover {
+            color: #764ba2;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature p {
+            color: #666;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <nav>
+            <div class="logo">Core-First</div>
+            <ul>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <h1>
-        CoreF Git Practices
-    </h1>
-    <hr>
-    <p>
-        This is a practice repository for learning Git and GitHub.
-    </p>
-    <ul>
-        <li>Git Basics</li>
-        <li>GitHub Basics</li>
-        <li>Branching</li>
-        <li>Merging</li>
-        <li>Pull Requests</li>
-    </ul>
+    <section class="hero">
+        <h1>Core-First</h1>
+        <p>Building innovative solutions with cutting-edge technology</p>
+        <div class="cta-buttons">
+            <a href="#projects" class="btn btn-primary">Explore Projects</a>
+            <a href="https://github.com/Core-First" class="btn btn-secondary">Visit GitHub</a>
+        </div>
+    </section>
 
-    <hr>
-    <p>another list</p>
-    <ul>
-        <li> Power Rangers</li>
-        <li> Transformers</li>
-        <li> Voltron</li>
-        <li> Thundercats</li>
-        <li> Teenage Mutant Ninja Turtles</li>
-        <li> G.I. Joe </li>    
-    </ul>
-    <hr>
-    <p>
-        Created by CoreF Team
-    </p>
+    <section id="features" class="section">
+        <div class="section-content">
+            <h2>Why Choose Core-First</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Innovation</h3>
+                    <p>Cutting-edge solutions using modern technologies and best practices</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <h3>Collaboration</h3>
+                    <p>A talented team dedicated to delivering excellence</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Quality</h3>
+                    <p>Robust and maintainable code with comprehensive documentation</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>Versatility</h3>
+                    <p>Full-stack solutions across web, mobile, and backend</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <p>
-        Git add, git commit,git pull, git push
-    </p>
-<<<<<<< HEAD
-    <h2>Dito tafuta hela ya khadija</h2>
-=======
-    <p>bdittor miguru pande</p>
-    <p>ditto rambooo</p>
-    <p>bdittor miguru pande</p>
-<<<<<<< HEAD
+    <section id="projects" class="section">
+        <div class="section-content">
+            <h2>Our Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🎯 Kairon</h3>
+                    <p>A timetable management application built with Dart. Ancient Greek word for the "opportune moment."</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Dart</span>
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Mobile</span>
+                    </div>
+                    <a href="https://github.com/Core-First/kairon" class="project-link">View Project →</a>
+                </div>
 
-    <h1>lipweche kipara cgha kidevuni mtoto anashanga kama mtoto wa pwani</h1>
-    <h1>ditto ni muharibifu sana usimpe kifaa chako</h1>
-    <h1>boyka ana ubapa mkari kuliko upanga</h1>
-=======
->>>>>>> 2949b5c6941f57256718e00c45d03e0920b79679
->>>>>>> 1e677283a5f82881b5a6d2ad1267c4ba1c078a64
+                <div class="project-card">
+                    <h3>📊 Notiva</h3>
+                    <p>A comprehensive notification management system with both API backend and web interface.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Full-Stack</span>
+                    </div>
+                    <a href="https://github.com/Core-First/notiva-api" class="project-link">View API →</a>
+                </div>
 
-<p>The Simlab repo is not seen for me on git... I don't know where it is</p>
+                <div class="project-card">
+                    <h3>💬 CoreF SMS SDK</h3>
+                    <p>Python SDK for NEXT SMS Tanzania API v2. Simplifying SMS integration for developers.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SDK</span>
+                        <span class="tech-tag">Integration</span>
+                    </div>
+                    <a href="https://github.com/Core-First/coreF" class="project-link">View SDK →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>🧪 Simulation Lab</h3>
+                    <p>Interactive simulations and demonstrations showcasing various technologies and concepts.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">Interactive</span>
+                        <span class="tech-tag">Educational</span>
+                    </div>
+                    <a href="https://github.com/Core-First/simulation_lab" class="project-link">View Lab →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>📚 Demo Repository</h3>
+                    <p>A showcase repository demonstrating the best GitHub has to offer and development best practices.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">Best Practices</span>
+                        <span class="tech-tag">Demo</span>
+                    </div>
+                    <a href="https://github.com/Core-First/demo-repository" class="project-link">View Demo →</a>
+                </div>
+
+                <div class="project-card">
+                    <h3>🌐 Kairon Web</h3>
+                    <p>Landing page and web presence for the Kairon mobile app with beautiful design.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">GitHub Pages</span>
+                        <span class="tech-tag">Web</span>
+                    </div>
+                    <a href="https://github.com/Core-First/kairon-web" class="project-link">View Website →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section">
+        <div class="section-content">
+            <h2>Meet Our Team</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Talented developers and innovators driving Core-First forward</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">👨‍💻</div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Development Team</h3>
+                        <p>Full-stack developers specializing in modern web and mobile technologies</p>
+                        <div class="team-links">
+                            <a href="https://github.com/Core-First">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">🎨</div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Design & UX</h3>
+                        <p>Creating beautiful and intuitive user experiences across all platforms</p>
+                        <div class="team-links">
+                            <a href="https://github.com/Core-First">Portfolio</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">🔍</div>
+                    </div>
+                    <div class="team-body">
+                        <h3>QA & Testing</h3>
+                        <p>Ensuring quality and reliability through comprehensive testing strategies</p>
+                        <div class="team-links">
+                            <a href="https://github.com/Core-First">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">📋</div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Project Management</h3>
+                        <p>Coordinating efforts and ensuring successful project delivery</p>
+                        <div class="team-links">
+                            <a href="https://github.com/Core-First">Connect</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">🔐</div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Security & DevOps</h3>
+                        <p>Building secure, scalable infrastructure and deployment pipelines</p>
+                        <div class="team-links">
+                            <a href="https://github.com/Core-First">Infrastructure</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-header">
+                        <div class="team-avatar">📈</div>
+                    </div>
+                    <div class="team-body">
+                        <h3>Innovation & Strategy</h3>
+                        <p>Researching emerging technologies and driving strategic direction</p>
+                        <div class="team-links">
+                            <a href="https://github.com/Core-First">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <div class="section-content">
+            <h2 style="color: white;">Get In Touch</h2>
+            <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">Join us in building the future of technology</p>
+            <div style="text-align: center;">
+                <p style="margin-bottom: 1rem;">Visit our GitHub organization to explore our work and contribute:</p>
+                <a href="https://github.com/Core-First" class="btn btn-secondary" style="display: inline-block;">Visit GitHub Organization</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://github.com/Core-First">GitHub</a>
+                <a href="#projects">Projects</a>
+                <a href="#team">Team</a>
+                <a href="#features">Features</a>
+            </div>
+            <p>&copy; 2026 Core-First. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; opacity: 0.7;">Building innovative solutions with cutting-edge technology</p>
+        </div>
+    </footer>
 </body>
-
 </html>
